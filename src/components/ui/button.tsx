@@ -5,29 +5,31 @@ import * as React from "react";
 import { cn } from "@/lib/utils";
 
 export const buttonVariants = cva(
-  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-display font-semibold uppercase tracking-wider transition-all duration-200 disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
+  "inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md font-display text-sm font-semibold uppercase tracking-wider transition-all duration-200 disabled:pointer-events-none disabled:opacity-50 [&_svg]:size-4 [&_svg]:shrink-0",
   {
     variants: {
       variant: {
-        primary:
+        default:
           "bg-gradient-primary text-primary-foreground shadow-glow hover:brightness-110 active:translate-y-px",
         outline:
           "border border-border bg-transparent text-foreground hover:border-primary hover:text-primary",
         ghost: "bg-transparent text-foreground hover:bg-secondary",
         secondary: "bg-secondary text-secondary-foreground hover:bg-accent",
+        steel: "bg-steel text-background hover:brightness-110",
         destructive:
           "bg-destructive text-destructive-foreground hover:brightness-110",
         link: "text-primary underline-offset-4 hover:underline",
       },
       size: {
+        default: "h-11 px-5",
         sm: "h-9 px-3 text-xs",
-        md: "h-11 px-5 text-sm",
+        md: "h-11 px-5",
         lg: "h-13 px-7 text-base",
         icon: "size-11",
       },
       block: { true: "w-full", false: "" },
     },
-    defaultVariants: { variant: "primary", size: "md", block: false },
+    defaultVariants: { variant: "default", size: "default", block: false },
   },
 );
 
