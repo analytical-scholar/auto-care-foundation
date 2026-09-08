@@ -1,23 +1,47 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { Clock, MapPin, Phone } from "lucide-react";
 
-import { EmptyState } from "@/components/common/placeholder-section";
 import { Section, SectionHeading } from "@/components/layout/section";
-import { SITE } from "@/config/site";
+import { Button } from "@/components/ui/button";
+import { FULL_ADDRESS, SITE, TEL_HREF } from "@/config/site";
 
 export const Route = createFileRoute("/contact")({
   head: () => ({
     meta: [
-      { title: `Contact & Workshop Hours | ${SITE.shortName}` },
+      { title: `Contact & Opening Hours | ${SITE.name}` },
       {
         name: "description",
         content:
-          "Call, email or visit Solution For All Auto Care. Workshop hours, location and enquiry details.",
+          "Call Solution For All Auto Care on +234 814 034 7298 or visit Balogun Ave, Isheri Olofin, Lagos. Open every day, 8:00 AM to 7:00 PM.",
       },
-      { property: "og:title", content: `Contact | ${SITE.shortName}` },
+      { property: "og:title", content: `Contact | ${SITE.name}` },
       {
         property: "og:description",
-        content: "Get in touch with our service desk for quotes and bookings.",
+        content: "Phone, workshop address and opening hours in Lagos, Nigeria.",
+      },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/contact" },
+    ],
+    links: [{ rel: "canonical", href: "/contact" }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "AutoRepair",
+          name: SITE.name,
+          description: SITE.description,
+          telephone: SITE.phone,
+          address: {
+            "@type": "PostalAddress",
+            streetAddress: SITE.address.line1,
+            addressLocality: SITE.address.city,
+            postalCode: SITE.address.postalCode,
+            addressRegion: SITE.address.region,
+            addressCountry: "NG",
+          },
+          openingHours: "Mo-Su 08:00-19:00",
+        }),
       },
     ],
   }),
@@ -26,57 +50,66 @@ export const Route = createFileRoute("/contact")({
 
 function ContactPage() {
   return (
-    <Section padding="lg">
-      <SectionHeading
-        as="h1"
-        eyebrow="Talk to the service desk"
-        title="Contact"
-        description="Layout, hours and contact details are in place. The enquiry form is connected in a later phase."
-      />
+    <>
+      <Section tone="carbon" padding="lg">
+        <SectionHeading
+          as="h1"
+          eyebrow="Talk to the workshop"
+          title="Contact"
+          description="Call us or stop by the workshop — we are open every day."
+        />
+        <div className="mt-8 flex flex-wrap gap-3">
+          <Button asChild size="lg">
+            <a href={TEL_HREF}>Call {SITE.phone}</a>
+          </Button>
+          <Button asChild size="lg" variant="outline">
+            <Link to="/services">See what we do</Link>
+          </Button>
+        </div>
+      </Section>
 
-      <div className="mt-10 grid gap-6 lg:grid-cols-2">
-        <ul className="space-y-4">
-          {[
-            { icon: Phone, label: "Phone", value: SITE.phone },
-            { icon: Mail, label: "Email", value: SITE.email },
-            {
-              icon: MapPin,
-              label: "Workshop",
-              value: `${SITE.address.line1}, ${SITE.address.city}, ${SITE.address.region} ${SITE.address.postalCode}`,
-            },
-          ].map(({ icon: Icon, label, value }) => (
-            <li
-              key={label}
-              className="flex items-start gap-4 rounded-lg border border-border bg-card p-5"
-            >
-              <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-secondary text-primary">
-                <Icon aria-hidden className="size-4" />
-              </span>
-              <div>
-                <p className="text-eyebrow text-muted-foreground">{label}</p>
-                <p className="mt-1 text-base">{value}</p>
-              </div>
-            </li>
-          ))}
-          <li className="rounded-lg border border-border bg-card p-5">
-            <p className="text-eyebrow text-muted-foreground">Opening hours</p>
-            <dl className="mt-2 space-y-1 text-sm">
-              {SITE.hours.map((h) => (
-                <div key={h.days} className="flex justify-between gap-4">
-                  <dt className="text-muted-foreground">{h.days}</dt>
-                  <dd>{h.time}</dd>
-                </div>
-              ))}
-            </dl>
+      <Section padding="md">
+        <ul className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          <li className="flex items-start gap-4 rounded-lg border border-border bg-card p-5">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-secondary text-primary">
+              <Phone aria-hidden className="size-4" />
+            </span>
+            <div>
+              <h2 className="text-eyebrow text-muted-foreground">Phone</h2>
+              <a href={TEL_HREF} className="mt-1 block text-base hover:text-primary">
+                {SITE.phone}
+              </a>
+            </div>
+          </li>
+
+          <li className="flex items-start gap-4 rounded-lg border border-border bg-card p-5">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-secondary text-primary">
+              <MapPin aria-hidden className="size-4" />
+            </span>
+            <div>
+              <h2 className="text-eyebrow text-muted-foreground">Workshop</h2>
+              <address className="mt-1 text-base not-italic">{FULL_ADDRESS}</address>
+            </div>
+          </li>
+
+          <li className="flex items-start gap-4 rounded-lg border border-border bg-card p-5">
+            <span className="flex size-10 shrink-0 items-center justify-center rounded-md bg-secondary text-primary">
+              <Clock aria-hidden className="size-4" />
+            </span>
+            <div>
+              <h2 className="text-eyebrow text-muted-foreground">Opening hours</h2>
+              <dl className="mt-1 space-y-1 text-base">
+                {SITE.hours.map((h) => (
+                  <div key={h.days} className="flex flex-wrap gap-x-2">
+                    <dt className="text-muted-foreground">{h.days}:</dt>
+                    <dd>{h.time}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
           </li>
         </ul>
-
-        <EmptyState
-          icon={Mail}
-          title="Enquiry form coming next"
-          description="These contact details are placeholders — send me the real phone number, email and address and I'll swap them in."
-        />
-      </div>
-    </Section>
+      </Section>
+    </>
   );
 }

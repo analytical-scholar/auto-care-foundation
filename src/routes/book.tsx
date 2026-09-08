@@ -1,26 +1,29 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { CalendarCheck } from "lucide-react";
+import { CalendarCheck, Phone } from "lucide-react";
 
 import { EmptyState } from "@/components/common/placeholder-section";
 import { Section, SectionHeading } from "@/components/layout/section";
 import { Button } from "@/components/ui/button";
-import { SITE } from "@/config/site";
+import { SITE, TEL_HREF } from "@/config/site";
 
 export const Route = createFileRoute("/book")({
   head: () => ({
     meta: [
-      { title: `Book a Service | ${SITE.shortName}` },
+      { title: `Book a Service | ${SITE.name}` },
       {
         name: "description",
         content:
-          "Reserve a workshop slot with Solution For All Auto Care — servicing, repairs and diagnostics booked around you.",
+          "Arrange a workshop visit with Solution For All Auto Care in Isheri Olofin, Lagos. Call +234 814 034 7298, open every day 8:00 AM – 7:00 PM.",
       },
-      { property: "og:title", content: `Book a Service | ${SITE.shortName}` },
+      { property: "og:title", content: `Book a Service | ${SITE.name}` },
       {
         property: "og:description",
-        content: "Choose a service, pick a slot and confirm your booking.",
+        content: "Call the workshop to arrange a visit for repairs or maintenance.",
       },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "/book" },
     ],
+    links: [{ rel: "canonical", href: "/book" }],
   }),
   component: BookPage,
 });
@@ -31,20 +34,28 @@ function BookPage() {
       <SectionHeading
         as="h1"
         align="center"
-        eyebrow="Reserve your slot"
+        eyebrow="Arrange a visit"
         title="Book a Service"
-        description="The booking journey is scaffolded here. Slot selection and confirmation are wired up once the booking engine goes in."
+        description="Online booking is on the way. Until then, a phone call is the fastest way to reserve a slot."
         className="mx-auto"
       />
       <EmptyState
         className="mt-10"
         icon={CalendarCheck}
-        title="Booking engine not connected yet"
-        description={`For now, bookings go through the service desk on ${SITE.phone}.`}
+        title="Online booking coming soon"
+        description={`Call ${SITE.phone} between ${SITE.hours[0].time} any day and we will book you in.`}
         action={
-          <Button asChild variant="outline" className="mt-2">
-            <Link to="/contact">Contact the workshop</Link>
-          </Button>
+          <div className="mt-2 flex flex-wrap justify-center gap-3">
+            <Button asChild>
+              <a href={TEL_HREF}>
+                <Phone aria-hidden className="size-4" />
+                {SITE.phone}
+              </a>
+            </Button>
+            <Button asChild variant="outline">
+              <Link to="/contact">Workshop details</Link>
+            </Button>
+          </div>
         }
       />
     </Section>
