@@ -1,33 +1,26 @@
 /**
  * Central brand + navigation configuration.
- * Placeholder contact details — replace with the real business details.
+ * Only confirmed business details are stored here.
  */
 export const SITE = {
   name: "Solution For All Auto Care",
-  shortName: "S4A Auto Care",
+  shortName: "Solution For All Auto Care",
   tagline: "Auto Repairs & Maintenance Services",
-  description:
-    "Premium auto repairs, servicing and maintenance from certified technicians. Honest diagnostics, dealer-level care.",
-  phone: "+1 (555) 018-4402",
-  email: "hello@s4aautocare.com",
+  description: "We revolutionize auto repair experience with innovative solutions.",
+  phone: "+234 814 034 7298",
   address: {
-    line1: "1420 Ignition Way",
-    city: "Springfield",
-    region: "IL",
-    postalCode: "62704",
-    country: "US",
+    line1: "Balogun Ave, Isheri Olofin",
+    city: "Idimu/Isheri Olofin",
+    postalCode: "102213",
+    region: "Lagos",
+    country: "Nigeria",
   },
-  hours: [
-    { days: "Mon – Fri", time: "7:30am – 6:00pm" },
-    { days: "Saturday", time: "8:00am – 3:00pm" },
-    { days: "Sunday", time: "Closed" },
-  ],
-  socials: [
-    { label: "Facebook", href: "#" },
-    { label: "Instagram", href: "#" },
-    { label: "YouTube", href: "#" },
-  ],
+  hours: [{ days: "Every day", time: "8:00 AM – 7:00 PM" }],
 } as const;
+
+export const FULL_ADDRESS = `${SITE.address.line1}, ${SITE.address.city} ${SITE.address.postalCode}, ${SITE.address.region}, ${SITE.address.country}`;
+
+export const TEL_HREF = `tel:${SITE.phone.replace(/[^\d+]/g, "")}`;
 
 export type NavLink = {
   readonly to: "/" | "/services" | "/about" | "/gallery" | "/contact" | "/book";
