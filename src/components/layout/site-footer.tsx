@@ -1,9 +1,9 @@
 import { Link } from "@tanstack/react-router";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { Clock, MapPin, Phone } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
-import { NAV_LINKS, SITE } from "@/config/site";
+import { FULL_ADDRESS, NAV_LINKS, SITE, TEL_HREF } from "@/config/site";
 
 export function SiteFooter() {
   return (
@@ -17,7 +17,7 @@ export function SiteFooter() {
 
           <div className="grid gap-8 sm:grid-cols-2 md:col-span-2">
             <nav aria-label="Footer navigation" className="flex flex-col gap-2">
-              <h3 className="text-eyebrow text-primary">Explore</h3>
+              <h2 className="text-eyebrow text-primary">Explore</h2>
               {NAV_LINKS.map((link) => (
                 <Link
                   key={link.to}
@@ -30,27 +30,17 @@ export function SiteFooter() {
             </nav>
 
             <div className="flex flex-col gap-2">
-              <h3 className="text-eyebrow text-primary">Workshop</h3>
+              <h2 className="text-eyebrow text-primary">Workshop</h2>
               <a
-                href={`tel:${SITE.phone.replace(/\s/g, "")}`}
+                href={TEL_HREF}
                 className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
               >
                 <Phone aria-hidden className="size-4" />
                 {SITE.phone}
               </a>
-              <a
-                href={`mailto:${SITE.email}`}
-                className="inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-foreground"
-              >
-                <Mail aria-hidden className="size-4" />
-                {SITE.email}
-              </a>
               <p className="inline-flex items-start gap-2 text-sm text-muted-foreground">
-                <MapPin aria-hidden className="mt-0.5 size-4" />
-                <span>
-                  {SITE.address.line1}, {SITE.address.city}, {SITE.address.region}{" "}
-                  {SITE.address.postalCode}
-                </span>
+                <MapPin aria-hidden className="mt-0.5 size-4 shrink-0" />
+                <span>{FULL_ADDRESS}</span>
               </p>
               <ul className="mt-2 space-y-1 text-sm text-muted-foreground">
                 {SITE.hours.map((h) => (
@@ -66,11 +56,10 @@ export function SiteFooter() {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 border-t border-border py-6 text-xs text-muted-foreground sm:flex-row sm:items-center sm:justify-between">
+        <div className="border-t border-border py-6 text-xs text-muted-foreground">
           <p>
             © {new Date().getFullYear()} {SITE.name}. All rights reserved.
           </p>
-          <p>Contact details shown are placeholders pending confirmation.</p>
         </div>
       </Container>
     </footer>
