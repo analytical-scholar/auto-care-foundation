@@ -55,6 +55,9 @@ function BookPage() {
             <Button asChild variant="outline">
               <Link to="/contact">Workshop details</Link>
             </Button>
+            <Button asChild variant="ghost">
+              <Link to="/it-siwes">IT / SIWES placement</Link>
+            </Button>
           </div>
         }
       />
