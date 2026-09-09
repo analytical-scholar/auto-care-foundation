@@ -164,6 +164,22 @@ function Home() {
             </Button>
           </div>
         </div>
+
+        <div className="mt-4 flex flex-col items-start justify-between gap-4 rounded-lg border border-border bg-card p-6 sm:flex-row sm:items-center">
+          <div>
+            <h2 className="text-lg uppercase">Student? IT / SIWES placement</h2>
+            <p className="mt-1 text-sm text-muted-foreground">
+              Register and submit an application to be considered for IT, SIWES or
+              Industrial Training.
+            </p>
+          </div>
+          <Button asChild variant="outline">
+            <Link to="/it-siwes">
+              <GraduationCap aria-hidden className="size-4" />
+              Apply for placement
+            </Link>
+          </Button>
+        </div>
       </Section>
     </>
   );
