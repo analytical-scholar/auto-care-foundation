@@ -3,7 +3,7 @@ import { Clock, MapPin, Phone } from "lucide-react";
 
 import { Logo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
-import { FULL_ADDRESS, NAV_LINKS, SITE, TEL_HREF } from "@/config/site";
+import { FULL_ADDRESS, NAV_LINKS, SECONDARY_NAV_LINKS, SITE, TEL_HREF } from "@/config/site";
 
 export function SiteFooter() {
   return (
@@ -19,6 +19,15 @@ export function SiteFooter() {
             <nav aria-label="Footer navigation" className="flex flex-col gap-2">
               <h2 className="text-eyebrow text-primary">Explore</h2>
               {NAV_LINKS.map((link) => (
+                <Link
+                  key={link.to}
+                  to={link.to}
+                  className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+                >
+                  {link.label}
+                </Link>
+              ))}
+              {SECONDARY_NAV_LINKS.map((link) => (
                 <Link
                   key={link.to}
                   to={link.to}

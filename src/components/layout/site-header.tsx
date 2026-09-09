@@ -5,7 +5,7 @@ import { useState } from "react";
 import { Logo } from "@/components/brand/logo";
 import { Container } from "@/components/layout/container";
 import { Button } from "@/components/ui/button";
-import { NAV_LINKS, SITE } from "@/config/site";
+import { NAV_LINKS, SECONDARY_NAV_LINKS, SITE } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 export function SiteHeader() {
@@ -25,6 +25,16 @@ export function SiteHeader() {
                 className="rounded-md px-3 py-2 font-display text-sm font-semibold uppercase tracking-wider text-muted-foreground transition-colors hover:text-foreground"
                 activeProps={{ className: "text-primary" }}
                 activeOptions={{ exact: link.to === "/" }}
+              >
+                {link.label}
+              </Link>
+            ))}
+            {SECONDARY_NAV_LINKS.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                className="rounded-md px-3 py-2 font-display text-xs font-semibold uppercase tracking-wider text-muted-foreground/80 transition-colors hover:text-foreground"
+                activeProps={{ className: "text-primary" }}
               >
                 {link.label}
               </Link>
@@ -73,6 +83,17 @@ export function SiteHeader() {
                 className="racing-stripe py-3 pl-4 font-display text-sm font-semibold uppercase tracking-wider text-muted-foreground"
                 activeProps={{ className: "text-primary" }}
                 activeOptions={{ exact: link.to === "/" }}
+              >
+                {link.label}
+              </Link>
+            ))}
+            {SECONDARY_NAV_LINKS.map((link) => (
+              <Link
+                key={link.to}
+                to={link.to}
+                onClick={() => setOpen(false)}
+                className="racing-stripe py-3 pl-4 font-display text-xs font-semibold uppercase tracking-wider text-muted-foreground/80"
+                activeProps={{ className: "text-primary" }}
               >
                 {link.label}
               </Link>

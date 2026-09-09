@@ -23,7 +23,14 @@ export const FULL_ADDRESS = `${SITE.address.line1}, ${SITE.address.city} ${SITE.
 export const TEL_HREF = `tel:${SITE.phone.replace(/[^\d+]/g, "")}`;
 
 export type NavLink = {
-  readonly to: "/" | "/services" | "/about" | "/gallery" | "/contact" | "/book";
+  readonly to:
+    | "/"
+    | "/services"
+    | "/about"
+    | "/gallery"
+    | "/contact"
+    | "/book"
+    | "/it-siwes";
   readonly label: string;
 };
 
@@ -33,4 +40,9 @@ export const NAV_LINKS: readonly NavLink[] = [
   { to: "/about", label: "About" },
   { to: "/gallery", label: "Gallery" },
   { to: "/contact", label: "Contact" },
+];
+
+/** Secondary, non-customer journeys kept discoverable but out of the main flow. */
+export const SECONDARY_NAV_LINKS: readonly NavLink[] = [
+  { to: "/it-siwes", label: "IT / SIWES Placement" },
 ];
