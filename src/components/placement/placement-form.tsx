@@ -30,7 +30,7 @@ function Required() {
   );
 }
 
-function FieldError({ id, message }: { id: string; message?: string }) {
+function FieldError({ id, message }: { id: string; message?: string | undefined }) {
   if (!message) return null;
   return (
     <p id={id} role="alert" className="text-sm text-primary">
@@ -464,9 +464,9 @@ export function PlacementForm() {
 interface FileFieldProps {
   id: string;
   label: string;
-  required?: boolean;
-  file?: File;
-  error?: string;
+  required?: boolean | undefined;
+  file?: File | undefined;
+  error?: string | undefined;
   onChange: (file: File | undefined) => void;
 }
 

@@ -32,11 +32,11 @@ export interface PlacementApplicationInput {
   preferredStartDate: ISODateString;
   expectedDuration: string;
   areaOfInterest: string;
-  relevantSkills?: string;
+  relevantSkills?: string | undefined;
   motivation: string;
-  referralSource?: string;
-  cv?: PlacementDocumentMeta;
-  additionalDocument?: PlacementDocumentMeta;
+  referralSource?: string | undefined;
+  cv?: PlacementDocumentMeta | undefined;
+  additionalDocument?: PlacementDocumentMeta | undefined;
 }
 
 export interface PlacementApplication extends PlacementApplicationInput {
