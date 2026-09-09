@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { Clock, MapPin, Phone } from "lucide-react";
+import { Clock, GraduationCap, MapPin, Phone } from "lucide-react";
 
 import { Lightbox } from "@/components/gallery/lightbox";
 import { Section, SectionHeading } from "@/components/layout/section";
